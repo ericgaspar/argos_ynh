@@ -23,25 +23,18 @@ pushd $install_dir
     ynh_hide_warnings $install_dir/venv/bin/pip install "argos-monitoring[gunicorn,ldap]"
 popd
 
-chown -R $app:$app "$install_dir"
-
 #=================================================
 # APP INITIAL CONFIGURATION
 #=================================================
 ynh_script_progression "Adding $app's configuration files..."
 
 ynh_config_add --template="argos-config.yaml" --destination="$install_dir/config.yaml"
-chmod 600 "$install_dir/config.yaml"
-chown "$app:$app" "$install_dir/config.yaml"
-
 ynh_config_add --template="argos-server" --destination="$install_dir/argos-server"
-chmod 600 "$install_dir/argos-server"
-chown "$app:$app" "$install_dir/argos-server"
-
 ynh_config_add --template="argos-agent" --destination="$install_dir/argos-agent"
-chmod 600 "$install_dir/argos-agent"
-chown "$app:$app" "$install_dir/argos-agent"
 
+chmod 700 $install_dir
+chmod 600 $install_dir/config.yaml
+chown -R $app:$app "$install_dir"
 
 #=================================================
 # SYSTEM CONFIGURATION
