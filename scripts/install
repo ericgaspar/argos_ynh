@@ -53,6 +53,14 @@ yunohost service add "argo-agent" --description="Monitoring and status board for
 ynh_config_add_logrotate
 
 #=================================================
+# ADD A CRON JOB
+#=================================================
+
+ynh_config_add --template="cron" --destination="/etc/cron.d/$app"
+chown root: "/etc/cron.d/$app"
+chmod 644 "/etc/cron.d/$app"
+
+#=================================================
 # START SYSTEMD SERVICE
 #=================================================
 ynh_script_progression "Starting $app's systemd service..."
