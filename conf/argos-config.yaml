@@ -39,19 +39,19 @@ general:
   # LDAP authentication
   # Instead of relying on Argos’ users, use a LDAP server to authenticate users.
   # If not present, Argos’ native user system is used.
-  # ldap:
-  #   # Server URI
-  #   uri: "ldaps://ldap.example.org"
-  #   # Search base DN
-  #   user_tree: "ou=users,dc=example,dc=org"
-  #   # Search bind DN
-  #   bind_dn: "uid=ldap_user,ou=users,dc=example,dc=org"
-  #   # Search bind password
-  #   bind_pwd: "secr3t"
-  #   # User attribute (uid, mail, sAMAccountName, etc.)
-  #   user_attr: "uid"
-  #   # User filter (to exclude some users, etc.)
-  #   user_filter: "(!(uid=ldap_user))"
+  ldap:
+    # Server URI
+    uri: "ldap://127.0.0.1:389"
+    # Search base DN
+    user_tree: "ou=users,dc=yunohost,dc=org"
+    # Search bind DN
+    #bind_dn: null
+    # Search bind password
+    #bind_pwd: null
+    # User attribute (uid, mail, sAMAccountName, etc.)
+    user_attr: "uid"
+    # User filter (to exclude some users, etc.)
+    user_filter: "(&(|(objectclass=posixAccount))(uid=%uid)(permission=cn=__APP__.main,ou=permission,dc=yunohost,dc=org))"
 
   # Default delay for checks.
   # Can be superseeded in domain configuration.
