@@ -100,20 +100,21 @@ general:
   # If not present, default value is ""
   # Set it to /foo if you want to use argos at /foo/ instead of /
   # on your web server
-  # root_path: "/__PATH__"
+  root_path: "/__PATH__"
+
   # Mail configuration is quite straight-forward
-  # mail:
-  #   mailfrom: no-reply@example.org
-  #   host: 127.0.0.1
-  #   port: 25
-  #   ssl: False
-  #   starttls: False
-  #   auth:
-  #     login: foo
-  #     password: bar
-  #   addresses:
-  #     - foo@admin.example.org
-  #     - bar@admin.example.org
+  mail:
+    mailfrom: no-reply@__DOMAIN__
+    host: 127.0.0.1
+    port: 25
+    ssl: False
+    starttls: False
+    auth:
+      login: __APP__
+      password: __MAIL_PWD__
+    addresses:
+      - foo@admin.example.org
+
   # Create an app on your Gotify server and put its token here
   # See https://gotify.net/ for details about Gotify
   # gotify:
