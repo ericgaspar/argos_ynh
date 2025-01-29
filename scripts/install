@@ -45,9 +45,10 @@ ynh_script_progression "Adding system configurations related to $app..."
 ynh_config_add_nginx
 
 ynh_config_add_systemd
-ynh_config_add_systemd --service=argo-agent --template=argo-agent
+ynh_config_add_systemd --service="argo-agent" --template="argo-agent.service"
 
 yunohost service add "$app" --description="Monitoring and status board for your websites" --log="/var/log/$app/$app.log"
+yunohost service add "argo-agent" --description="Monitoring and status board for your websites" --log="/var/log/$app/$app.log"
 
 ynh_config_add_logrotate
 
@@ -57,6 +58,7 @@ ynh_config_add_logrotate
 ynh_script_progression "Starting $app's systemd service..."
 
 ynh_systemctl --service="$app" --action="start"
+ynh_systemctl --service="argo-agent" --action="start"
 
 #=================================================
 # END OF SCRIPT
