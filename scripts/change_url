@@ -8,8 +8,8 @@ source /usr/share/yunohost/helpers
 #=================================================
 ynh_script_progression "Stopping $app's systemd service..."
 
-ynh_systemctl --service="argo-server" --action="stop"
-ynh_systemctl --service="argo-agent" --action="stop"
+ynh_systemctl --service="argos-server" --action="stop"
+ynh_systemctl --service="argos-agent" --action="stop"
 
 #=================================================
 # MODIFY URL IN NGINX CONF
@@ -31,8 +31,8 @@ chown "$app:$app" "$install_dir/config.yaml"
 #=================================================
 ynh_script_progression "Starting $app's systemd service..."
 
-ynh_systemctl --service="argo-server" --action="start"
-ynh_systemctl --service="argo-agent" --action="start"
+ynh_systemctl --service="argos-server" --action="start"
+ynh_systemctl --service="argos-agent" --action="start"
 
 #=================================================
 # END OF SCRIPT

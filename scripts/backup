@@ -17,8 +17,8 @@ ynh_backup "$install_dir"
 
 ynh_backup "/etc/nginx/conf.d/$domain.d/$app.conf"
 
-ynh_backup "/etc/systemd/system/argo-server.service"
-ynh_backup "/etc/systemd/system/argo-agent.service"
+ynh_backup "/etc/systemd/system/argos-server.service"
+ynh_backup "/etc/systemd/system/argos-agent.service"
 
 #=================================================
 # BACKUP VARIOUS FILES

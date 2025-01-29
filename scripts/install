@@ -50,11 +50,11 @@ ynh_script_progression "Adding system configurations related to $app..."
 
 ynh_config_add_nginx
 
-ynh_config_add_systemd --service="argo-server" --template="argo-server.service"
-ynh_config_add_systemd --service="argo-agent" --template="argo-agent.service"
+ynh_config_add_systemd --service="argos-server" --template="argos-server.service"
+ynh_config_add_systemd --service="argos-agent" --template="argos-agent.service"
 
-yunohost service add "argo-server" --description="Monitoring and status board for your websites" --log="/var/log/$app/$app.log"
-yunohost service add "argo-agent" --description="Monitoring and status board for your websites" --log="/var/log/$app/$app.log"
+yunohost service add "argos-server" --description="Monitoring and status board for your websites" --log="/var/log/$app/$app.log"
+yunohost service add "argos-agent" --description="Monitoring and status board for your websites" --log="/var/log/$app/$app.log"
 
 ynh_config_add_logrotate
 
@@ -71,8 +71,8 @@ chmod 644 "/etc/cron.d/$app"
 #=================================================
 ynh_script_progression "Starting $app's systemd service..."
 
-ynh_systemctl --service="argo-server" --action="start"
-ynh_systemctl --service="argo-agent" --action="start"
+ynh_systemctl --service="argos-server" --action="start"
+ynh_systemctl --service="argos-agent" --action="start"
 
 #=================================================
 # END OF SCRIPT
