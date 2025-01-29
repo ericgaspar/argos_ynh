@@ -71,8 +71,8 @@ chmod 644 "/etc/cron.d/$app"
 #=================================================
 ynh_script_progression "Starting $app's systemd service..."
 
-ynh_systemctl --service="$app" --action="start"
-ynh_systemctl --service="argo-agent" --action="start"
+#ynh_systemctl --service="$app" --action="start"
+#ynh_systemctl --service="argo-agent" --action="start"
 
 #=================================================
 # END OF SCRIPT
