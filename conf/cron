@@ -1,0 +1,1 @@
+*/5 * * * * argos server watch-agents --time-without-agent 10

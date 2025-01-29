@@ -19,7 +19,7 @@ ynh_script_progression "Installing Python dependencies..."
 
 pushd $install_dir
     python3 -m venv $install_dir/venv
-    ynh_hide_warnings $install_dir/venv/bin/pip install argos-monitoring
+    ynh_hide_warnings $install_dir/venv/bin/pip install "argos-monitoring[gunicorn,ldap]"
 popd
 
 chown -R $app:$app "$install_dir"
@@ -29,32 +29,10 @@ chown -R $app:$app "$install_dir"
 #=================================================
 ynh_script_progression "Adding $app's configuration files..."
 
-### You can add specific configuration files.
-###
-### Typically, put your template conf file in ../conf/your_config_file
-### The template may contain strings such as __FOO__ or __FOO_BAR__,
-### which will automatically be replaced by the values of $foo and $foo_bar
-###
-### ynh_config_add will also keep track of the config file's checksum,
-### which later during upgrade may allow to automatically backup the config file
-### if it's found that the file was manually modified
-###
-### Check the documentation of `ynh_config_add` for more info.
+ynh_config_add --template="argos-config.yaml" --destination="$install_dir/config.yaml"
 
-ynh_config_add --template="some_config_file" --destination="$install_dir/some_config_file"
-
-# FIXME: this should be handled by the core in the future
-### You may need to use chmod 600 instead of 400,
-### for example if the app is expected to be able to modify its own config
-chmod 400 "$install_dir/some_config_file"
-chown "$app:$app" "$install_dir/some_config_file"
-
-### For more complex cases where you want to replace stuff using regexes,
-### you shoud rely on ynh_replace (which is basically a wrapper for sed)
-### When doing so, you also need to manually call ynh_store_file_checksum
-###
-### ynh_replace --match="match_string" --replace="replace_string" --file="$install_dir/some_config_file"
-### ynh_store_file_checksum "$install_dir/some_config_file"
+chmod 600 "$install_dir/config.yaml"
+chown "$app:$app" "$install_dir/config.yaml"
 
 #=================================================
 # SYSTEM CONFIGURATION
