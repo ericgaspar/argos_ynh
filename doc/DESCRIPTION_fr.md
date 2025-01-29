@@ -1,1 +1,1 @@
-Ceci est une fausse description des fonctionalités de l'app
+Un tableau de contrôle et d'état pour les sites web. Testez la façon dont vos sites web réagissent aux contrôles externes et recevez une notification lorsque quelque chose ne va pas.

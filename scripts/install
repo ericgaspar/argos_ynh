@@ -20,10 +20,10 @@ ynh_script_progression "Installing Python dependencies..."
 pushd $install_dir
     python3 -m venv $install_dir/venv
     ynh_hide_warnings $install_dir/venv/bin/pip install argos-monitoring
-    ynh_hide_warnings $install_dir/venv/bin/pip install whoogle-search==$(ynh_app_upstream_version)
 popd
 
 chown -R $app:$app "$install_dir"
+
 #=================================================
 # APP INITIAL CONFIGURATION
 #=================================================
