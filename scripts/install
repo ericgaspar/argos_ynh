@@ -31,11 +31,17 @@ chown -R $app:$app "$install_dir"
 ynh_script_progression "Adding $app's configuration files..."
 
 ynh_config_add --template="argos-config.yaml" --destination="$install_dir/config.yaml"
-ynh_config_add --template="argos-server" --destination="$install_dir/argos-server"
-ynh_config_add --template="argos-agent" --destination="$install_dir/argos-agent"
-
 chmod 600 "$install_dir/config.yaml"
 chown "$app:$app" "$install_dir/config.yaml"
+
+ynh_config_add --template="argos-server" --destination="$install_dir/argos-server"
+chmod 600 "$install_dir/argos-server"
+chown "$app:$app" "$install_dir/argos-server"
+
+ynh_config_add --template="argos-agent" --destination="$install_dir/argos-agent"
+chmod 600 "$install_dir/argos-agent"
+chown "$app:$app" "$install_dir/argos-agent"
+
 
 #=================================================
 # SYSTEM CONFIGURATION
