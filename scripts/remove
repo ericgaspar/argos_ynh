@@ -8,15 +8,15 @@ source /usr/share/yunohost/helpers
 #=================================================
 ynh_script_progression "Removing system configurations related to $app..."
 
-if ynh_hide_warnings yunohost service status "$app" >/dev/null; then
-    yunohost service remove "$app"
+if ynh_hide_warnings yunohost service status "argo-server" >/dev/null; then
+    yunohost service remove "argo-server"
 fi
 
 if ynh_hide_warnings yunohost service status "argo-agent" >/dev/null; then
     yunohost service remove "argo-agent"
 fi
 
-ynh_config_remove_systemd
+ynh_config_remove_systemd "argo-server"
 ynh_config_remove_systemd "argo-agent"
 
 ynh_config_remove_nginx

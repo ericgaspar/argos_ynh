@@ -8,7 +8,7 @@ source /usr/share/yunohost/helpers
 #=================================================
 ynh_script_progression "Stopping $app's systemd service..."
 
-ynh_systemctl --service="$app" --action="stop"
+ynh_systemctl --service="argo-server" --action="stop"
 ynh_systemctl --service="argo-agent" --action="stop"
 
 #=================================================
@@ -16,7 +16,7 @@ ynh_systemctl --service="argo-agent" --action="stop"
 #=================================================
 ynh_script_progression "Upgrading source files..."
 
-ynh_setup_source --dest_dir="$install_dir" --full_replace --keep="config.yaml"
+ynh_setup_source --dest_dir="$install_dir" --full_replace --keep="config.yaml argo-server argo-agent"
 
 #=================================================
 # UPDATE A CONFIG FILE
@@ -35,16 +35,18 @@ ynh_script_progression "Upgrading system configurations related to $app..."
 
 ynh_config_add_nginx
 
-ynh_config_add_systemd
+ynh_config_add_systemd --service="argo-server" --template="argo-server.service"
+ynh_config_add_systemd --service="argo-agent" --template="argo-agent.service"
 
-yunohost service add "$app" --description="Monitoring and status board for your websites" --log="/var/log/$app/$app.log"
+yunohost service add "argo-server" --description="Monitoring and status board for your websites" --log="/var/log/$app/$app.log"
+yunohost service add "argo-agent" --description="Monitoring and status board for your websites" --log="/var/log/$app/$app.log"
 
-#=================================================
+#===========================================
 # START SYSTEMD SERVICE
 #=================================================
 ynh_script_progression "Starting $app's systemd service..."
 
-ynh_systemctl --service="$app" --action="start"
+ynh_systemctl --service="argo-server" --action="start"
 ynh_systemctl --service="argo-agent" --action="start"
 
 #=================================================

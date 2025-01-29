@@ -24,13 +24,14 @@ ynh_script_progression "Restoring system configurations related to $app..."
 
 ynh_restore "/etc/nginx/conf.d/$domain.d/$app.conf"
 
-ynh_restore "/etc/systemd/system/$app.service"
+ynh_restore "/etc/systemd/system/argo-server.service"
 ynh_restore "/etc/systemd/system/argo-agent.service"
 
-systemctl enable "$app.service" --quiet
+systemctl enable "argo-server.service" --quiet
 systemctl enable "argo-agent.service" --quiet
 
-yunohost service add "$app" --description="Monitoring and status board for your websites" --log="/var/log/$app/$app.log"
+yunohost service add "argo-server" --description="Monitoring and status board for your websites" --log="/var/log/$app/$app.log"
+yunohost service add "argo-agent" --description="Monitoring and status board for your websites" --log="/var/log/$app/$app.log"
 
 #=================================================
 # RESTORE VARIOUS FILES

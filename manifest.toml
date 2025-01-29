@@ -2,8 +2,8 @@
 
 packaging_format = 2
 
-id = "argos-server"
-name = "Argos Server"
+id = "argos"
+name = "Argos"
 description.en = "Monitoring and status board for your websites"
 description.fr = "Suivi et tableau d'état de vos sites Web"
 
