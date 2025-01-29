@@ -18,7 +18,7 @@ general:
   env: "production"
   # To get a good string for cookie_secret, run:
   # openssl rand -hex 32
-  cookie_secret: "foo_bar_baz"
+  cookie_secret: "__SECRET__"
 
   # Session duration
   # Use m for minutes, h for hours, d for days
@@ -100,7 +100,7 @@ general:
   # If not present, default value is ""
   # Set it to /foo if you want to use argos at /foo/ instead of /
   # on your web server
-  # root_path: "/foo"
+  # root_path: "/__PATH__"
   # Mail configuration is quite straight-forward
   # mail:
   #   mailfrom: no-reply@example.org
@@ -137,7 +137,7 @@ service:
   secrets:
     # Secrets can be generated using `argos server generate-token`.
     # You need at least one. Write them as a list, like:
-    # - secret_token
+     - __TOKEN__
 
 ssl:
   thresholds:
