@@ -14,8 +14,8 @@ ExecStartPre=/opt/argos/venv/bin/argos server reload-config
 ExecStart=/opt/argos/venv/bin/gunicorn "argos.server.main:get_application()" \
                                        --workers $ARGOS_SERVER_WORKERS \
                                        --worker-class uvicorn.workers.UvicornWorker \
-                                       --bind $ARGOS_SERVER_SOCKET \
-                                       --forwarded-allow-ips $ARGOS_SERVER_FORWARDED_ALLOW_IPS
+                                       --bind 127.0.0.1:__PORT__ \
+                                       --forwarded-allow-ips 127.0.0.1
 ExecReload=/opt/argos/venv/bin/argos server reload-config
 SyslogIdentifier=argos-server
 
