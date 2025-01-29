@@ -7,9 +7,9 @@ name = "Example app"
 description.en = "Monitoring and status board for your websites"
 description.fr = "Suivi et tableau d'état de vos sites Web"
 
-version = "1.0~ynh1"
+version = "0.7.3~ynh1"
 
-maintainers = ["johndoe"]
+maintainers = ["eric_G"]
 
 [upstream]
 license = "AGPL-3.0"
@@ -55,8 +55,6 @@ ram.runtime = "50M"
     [resources.system_user]
 
     [resources.install_dir]
-
-    [resources.data_dir]
 
     [resources.permissions]
     main.url = "/"
